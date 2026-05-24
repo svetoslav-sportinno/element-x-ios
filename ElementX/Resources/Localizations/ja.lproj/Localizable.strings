@@ -200,7 +200,6 @@
 "common_advanced_settings" = "高度な設定";
 "common_an_image" = "画像";
 "common_analytics" = "分析";
-"common_android_fetching_notifications_title" = "通知を同期中...";
 "common_android_shortcuts_remove_reason_left_room" = "あなたがルームを退出";
 "common_android_shortcuts_remove_reason_session_logged_out" = "セッションからログアウトされました";
 "common_appearance" = "テーマ";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "ルームを退出しました";
 "common_current_user_left_space" = "スペースから退出しました";
 "common_current_user_rejected_invite" = "招待は却下されました";
-"common_dark" = "ダーク";
 "common_date_date_at_time" = "%1$@ %2$@";
 "common_date_this_month" = "今月";
 "common_decryption_error" = "復号化エラー";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "このMatrix IDは見つからないため、招待が届かない可能性があります。";
 "common_leaving_room" = "ルームを退出しています";
 "common_leaving_space" = "スペースを退出しています";
-"common_light" = "ライト";
 "common_line_copied_to_clipboard" = "行をクリップボードにコピーしました";
 "common_link_copied_to_clipboard" = "リンクをクリップボードにコピーしました";
 "common_link_new_device" = "新しい端末から接続";
@@ -309,7 +306,6 @@
 "common_refreshing" = "更新中...";
 "common_removing" = "削除しています…";
 "common_replying_to" = "%1$@ に返信";
-"common_report_a_bug" = "バグを報告";
 "common_report_a_problem" = "問題を報告";
 "common_report_submitted" = "報告は送信されました";
 "common_rich_text_editor" = "リッチテキストエディター";
@@ -351,7 +347,6 @@
 "common_suggested" = "推奨される";
 "common_suggestions" = "提案";
 "common_syncing" = "同期中";
-"common_system" = "システム";
 "common_text" = "テキスト";
 "common_third_party_notices" = "第三者に関する通知";
 "common_thread" = "スレッド";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "メッセージの削除";
 "screen_room_change_permissions_everyone" = "メンバー";
 "screen_room_change_permissions_invite_people" = "ユーザーの招待";
+"screen_room_change_permissions_live_location" = "Share live location";
 "screen_room_change_permissions_manage_space" = "スペースの管理";
 "screen_room_change_permissions_manage_space_rooms" = "ルームを管理";
 "screen_room_change_permissions_member_moderation" = "メンバーの管理";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "終了するまでアプリを閉じないでください。";
 "screen_room_details_invite_people_preparing" = "招待を準備中...";
 "screen_room_details_invite_people_title" = "ユーザーを招待";
+"screen_room_details_invite_title" = "招待";
 "screen_room_details_leave_conversation_title" = "会話を退出";
 "screen_room_details_leave_room_title" = "ルームを退出";
 "screen_room_details_media_gallery_title" = "ファイルとメディア";
@@ -1408,6 +1405,7 @@
 "screen_session_verification_waiting_to_accept_title" = "リクエストの承認を待機中";
 "screen_share_location_live_location_disclaimer_title" = "ライブ位置情報の履歴はルームに保管され、メンバーは後から確認することもできます。";
 "screen_share_location_live_location_duration_picker_title" = "ライブ位置情報を共有する期間を選択してください。";
+"screen_share_location_live_location_missing_permissions" = "You do not have permissions to share your live location in this room";
 "screen_share_location_title" = "場所を共有";
 "screen_share_my_location_action" = "現在地を共有する";
 "screen_share_open_apple_maps" = "Apple Maps で開く";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ がメンバーシップに未知の変更を追加";
 "test_language_identifier" = "ja";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "Black";
+"theme_dark" = "ダーク";
+"theme_light" = "ライト";
+"theme_system" = "システム";
 "timeline_decryption_failure_historical_event_no_key_backup" = "この端末で過去のメッセージを表示できません";
 "timeline_decryption_failure_historical_event_unverified_device" = "過去のメッセージを表示するには、この端末を検証する必要があります";
 "timeline_decryption_failure_historical_event_user_not_joined" = "このメッセージにアクセスできません";

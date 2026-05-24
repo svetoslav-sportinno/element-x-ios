@@ -6,11 +6,14 @@
 // Please see LICENSE files in the repository root for full details.
 //
 
+import AVFoundation
 import Combine
 import Compound
 import GameController
+import Mantis
 import QuickLook
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct MediaUploadPreviewScreen: View {
     @Environment(\.colorScheme) private var colorScheme
@@ -33,17 +36,7 @@ struct MediaUploadPreviewScreen: View {
         mainContent
             .id(context.viewState.mediaURLs)
             .ignoresSafeArea(edges: [.horizontal])
-            .safeAreaInset(edge: .top) {
-                if context.viewState.mediaURLs.count > 1 {
-                    Text(L10n.screenMediaUploadPreviewItemCount(currentIndex + 1, context.viewState.mediaURLs.count))
-                        .font(.compound.bodyMD)
-                        .foregroundColor(.compound.textPrimary)
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 8)
-                        .background(.compound.bgBadgeDefault)
-                        .clipShape(.capsule)
-                }
-            }
+            .overlay(alignment: .top) { galleryBadge }
             .safeAreaInset(edge: .bottom, spacing: 0) {
                 composer
                     .padding(.horizontal, 12)
@@ -59,8 +52,34 @@ struct MediaUploadPreviewScreen: View {
             .preferredColorScheme(colorSchemeOverride)
             .onAppear(perform: focusComposerIfHardwareKeyboardConnected)
             .alert(item: $context.alertInfo)
+            .sheet(isPresented: $context.isPresentingMediaEditor) {
+                ImageEditorView(imageURL: context.viewState.mediaURLs[currentIndex]) { croppedImage in
+                    context.send(viewAction: .editedMedia(image: croppedImage, index: currentIndex))
+                    context.isPresentingMediaEditor = false
+                } onCancel: {
+                    context.isPresentingMediaEditor = false
+                }
+                .ignoresSafeArea()
+                // Make sure out of bound error alerts are shown even if the sheet is presented
+                .alert(item: $context.alertInfo)
+            }
     }
     
+    @ViewBuilder
+    private var galleryBadge: some View {
+        if context.viewState.mediaURLs.count > 1 {
+            Text(UntranslatedL10n.screenMediaUploadPreviewCount(currentIndex + 1, context.viewState.mediaURLs.count))
+                .font(.compound.bodySMSemibold)
+                .foregroundStyle(.compound.textPrimary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(Color.compound.bgCanvasDefault.opacity(0.85),
+                            in: Capsule())
+                .padding(.top, 12)
+                .accessibilityLabel(UntranslatedL10n.commonAttachmentsCount(context.viewState.mediaURLs.count))
+        }
+    }
+
     @ViewBuilder
     private var mainContent: some View {
         if ProcessInfo.processInfo.isiOSAppOnMac {
@@ -68,9 +87,13 @@ struct MediaUploadPreviewScreen: View {
                 .font(.compound.headingMD)
                 .foregroundColor(.compound.textSecondary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if context.viewState.mediaURLs.count > 1 {
+            UploadMediaPeekCarousel(mediaURLs: context.viewState.mediaURLs,
+                                    currentIndex: $currentIndex)
         } else {
             PreviewView(mediaURLs: context.viewState.mediaURLs,
                         title: context.viewState.title,
+                        mediaEditVersion: context.viewState.mediaEditVersion,
                         currentIndex: $currentIndex)
         }
     }
@@ -149,8 +172,33 @@ struct MediaUploadPreviewScreen: View {
             // follow the dark colour scheme on devices running with dark mode disabled.
             .tint(.compound.textActionPrimary)
         }
+        
+        if isCurrentMediaImage {
+            ToolbarItem(placement: .primaryAction) {
+                Button { context.isPresentingMediaEditor = true } label: {
+                    CompoundIcon(\.editSolid)
+                }
+                // Fix a bug with the preferredColorScheme on iOS 18 where the button doesn't
+                // follow the dark colour scheme on devices running with dark mode disabled.
+                .tint(.compound.textActionPrimary)
+            }
+        }
     }
     
+    private var isCurrentMediaImage: Bool {
+        guard context.viewState.mediaURLs.indices.contains(currentIndex) else {
+            return false
+        }
+        
+        let url = context.viewState.mediaURLs[currentIndex]
+        
+        guard let type = UTType(filenameExtension: url.pathExtension) else {
+            return false
+        }
+        
+        return type.conforms(to: .image)
+    }
+
     private func handleKeyPress(_ key: UIKeyboardHIDUsage) {
         switch key {
         case .keyboardReturnOrEnter:
@@ -173,9 +221,133 @@ struct MediaUploadPreviewScreen: View {
     }
 }
 
+private struct UploadMediaPeekCarousel: View {
+    let mediaURLs: [URL]
+    @Binding var currentIndex: Int
+
+    @State private var scrolledID: Int?
+
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(spacing: 8) {
+                ForEach(Array(mediaURLs.enumerated()), id: \.offset) { index, url in
+                    UploadMediaThumbnail(url: url)
+                        .containerRelativeFrame(.horizontal)
+                        .id(index)
+                }
+            }
+            .scrollTargetLayout()
+        }
+        .contentMargins(.horizontal, 24, for: .scrollContent)
+        .scrollTargetBehavior(.viewAligned)
+        .scrollPosition(id: $scrolledID)
+        .onAppear {
+            if scrolledID == nil { scrolledID = currentIndex }
+        }
+        .onChange(of: scrolledID) { _, newValue in
+            if let newValue, newValue != currentIndex { currentIndex = newValue }
+        }
+    }
+}
+
+private struct UploadMediaThumbnail: View {
+    let url: URL
+
+    private var contentType: UTType? {
+        UTType(filenameExtension: url.pathExtension)
+    }
+
+    private var isImageOrVideo: Bool {
+        guard let contentType else { return false }
+        return contentType.conforms(to: .image) || contentType.conforms(to: .movie) || contentType.conforms(to: .audiovisualContent)
+    }
+
+    var body: some View {
+        Group {
+            if isImageOrVideo {
+                UploadMediaImageThumbnail(url: url)
+            } else {
+                UploadMediaFilePreview(url: url, title: url.lastPathComponent)
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+    }
+}
+
+private struct UploadMediaImageThumbnail: View {
+    let url: URL
+    @State private var image: UIImage?
+
+    var body: some View {
+        ZStack {
+            Color.black
+            if let image {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+            } else {
+                ProgressView().tint(.white)
+            }
+        }
+        .task(id: url) { await load() }
+    }
+
+    private func load() async {
+        if let image = UIImage(contentsOfFile: url.path(percentEncoded: false)) {
+            self.image = image
+            return
+        }
+
+        // Fall back to a video frame thumbnail.
+        let asset = AVURLAsset(url: url)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.appliesPreferredTrackTransform = true
+        do {
+            let cgImage = try await generator.image(at: .zero).image
+            image = UIImage(cgImage: cgImage)
+        } catch {
+            image = nil
+        }
+    }
+}
+
+private struct UploadMediaFilePreview: UIViewControllerRepresentable {
+    let url: URL
+    let title: String
+
+    func makeUIViewController(context: Context) -> QLPreviewController {
+        let controller = QLPreviewController()
+        controller.dataSource = context.coordinator
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: QLPreviewController, context: Context) { }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(url: url, title: title)
+    }
+
+    final class Coordinator: NSObject, QLPreviewControllerDataSource {
+        private let item: PreviewItem
+
+        init(url: URL, title: String) {
+            item = PreviewItem(previewItemURL: url, previewItemTitle: title)
+        }
+
+        func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+            1
+        }
+
+        func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+            item
+        }
+    }
+}
+
 private struct PreviewView: UIViewControllerRepresentable {
     let mediaURLs: [URL]
     let title: String?
+    let mediaEditVersion: Int
     @Binding var currentIndex: Int
 
     func makeUIViewController(context: Context) -> UIViewController {
@@ -190,7 +362,17 @@ private struct PreviewView: UIViewControllerRepresentable {
         }
     }
 
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) { }
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        guard context.coordinator.mediaEditVersion != mediaEditVersion else {
+            return
+        }
+        
+        context.coordinator.mediaEditVersion = mediaEditVersion
+        
+        let previewController = (uiViewController as? UINavigationController)?.viewControllers.first as? QLPreviewController
+            ?? uiViewController as? QLPreviewController
+        previewController?.reloadData()
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(view: self)
@@ -198,9 +380,11 @@ private struct PreviewView: UIViewControllerRepresentable {
     
     class Coordinator: NSObject, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
         let view: PreviewView
+        var mediaEditVersion: Int
 
         init(view: PreviewView) {
             self.view = view
+            mediaEditVersion = view.mediaEditVersion
         }
         
         // MARK: - QLPreviewControllerDataSource
@@ -265,6 +449,49 @@ private class PreviewViewController: QLPreviewController {
     }
 }
 
+// MARK: - ImageCropView
+
+private struct ImageEditorView: UIViewControllerRepresentable {
+    let imageURL: URL
+    var onCrop: (UIImage) -> Void
+    var onCancel: () -> Void
+
+    func makeUIViewController(context: Context) -> CropViewController {
+        let image = UIImage(contentsOfFile: imageURL.path) ?? UIImage()
+        
+        let cropViewController = Mantis.cropViewController(image: image)
+        cropViewController.delegate = context.coordinator
+        return cropViewController
+    }
+
+    func updateUIViewController(_ uiViewController: CropViewController, context: Context) { }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(onCrop: onCrop, onCancel: onCancel)
+    }
+
+    class Coordinator: NSObject, CropViewControllerDelegate {
+        var onCrop: (UIImage) -> Void
+        var onCancel: () -> Void
+
+        init(onCrop: @escaping (UIImage) -> Void, onCancel: @escaping () -> Void) {
+            self.onCrop = onCrop
+            self.onCancel = onCancel
+        }
+
+        func cropViewControllerDidCrop(_ cropViewController: CropViewController,
+                                       cropped: UIImage,
+                                       transformation: Transformation,
+                                       cropInfo: CropInfo) {
+            onCrop(cropped)
+        }
+
+        func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+            onCancel()
+        }
+    }
+}
+
 // MARK: - Previews
 
 struct MediaUploadPreviewScreen_Previews: PreviewProvider, TestablePreview {
@@ -272,13 +499,14 @@ struct MediaUploadPreviewScreen_Previews: PreviewProvider, TestablePreview {
     static let testURL = Bundle.main.url(forResource: "AppIcon60x60@2x", withExtension: "png")
     
     static let viewModel = MediaUploadPreviewScreenViewModel(mediaURLs: [snapshotURL],
+                                                             caption: nil,
                                                              title: "App Icon.png",
                                                              isRoomEncrypted: true,
                                                              shouldShowCaptionWarning: true,
-                                                             mediaUploadingPreprocessor: MediaUploadingPreprocessor(appSettings: ServiceLocator.shared.settings),
+                                                             mediaUploadingPreprocessor: MediaUploadingPreprocessor(appSettings: .volatile()),
                                                              timelineController: MockTimelineController(),
                                                              clientProxy: ClientProxyMock(.init()),
-                                                             userIndicatorController: UserIndicatorControllerMock.default)
+                                                             userIndicatorController: UserIndicatorControllerMock())
     static var previews: some View {
         ElementNavigationStack {
             MediaUploadPreviewScreen(context: viewModel.context)

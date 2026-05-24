@@ -17,15 +17,9 @@ final class MediaUploadingPreprocessorTests {
     var mediaUploadingPreprocessor: MediaUploadingPreprocessor!
     
     init() {
-        AppSettings.resetAllSettings()
-        appSettings = AppSettings()
+        appSettings = AppSettings.volatile()
         appSettings.optimizeMediaUploads = false
-        ServiceLocator.shared.register(appSettings: appSettings)
         mediaUploadingPreprocessor = MediaUploadingPreprocessor(appSettings: appSettings)
-    }
-    
-    deinit {
-        AppSettings.resetAllSettings()
     }
     
     @Test

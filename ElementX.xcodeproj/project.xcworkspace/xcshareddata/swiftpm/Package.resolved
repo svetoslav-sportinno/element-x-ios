@@ -1,5 +1,5 @@
 {
-  "originHash" : "96195bee19a32d147f55de894ed1859cd16a9c0a020eb48059a69ac3cdfffabf",
+  "originHash" : "56ffe9d7d62816027f5ec24272e0c7117a5f241303febda32adb0b1e64a148f1",
   "pins" : [
     {
       "identity" : "compound-design-tokens",
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/element-hq/element-call-swift",
       "state" : {
-        "revision" : "0410451a459a5def781f4171bc1f2318d0238de4",
-        "version" : "0.19.2"
+        "revision" : "efb829c8df324c8b0bfb8dc3d7c73ab0f4045caf",
+        "version" : "0.19.3"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "c152c1915f60c51e4afa0752656993ee5b3c63db",
-        "version" : "8.8.1"
+        "revision" : "cf8be20d07654570554c8a8a4952bc8a5766a8b0",
+        "version" : "8.9.0"
       }
     },
     {
@@ -124,6 +124,15 @@
       "state" : {
         "revision" : "cb5b2bd0da83ad29c0bec762d39f41c8ad0eaf3e",
         "version" : "1.2.1"
+      }
+    },
+    {
+      "identity" : "mantis",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/guoyingtao/Mantis",
+      "state" : {
+        "revision" : "584f03f879e0f6c266a03697e9a44815b09781f4",
+        "version" : "2.31.1"
       }
     },
     {
@@ -158,8 +167,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/element-hq/matrix-rust-components-swift",
       "state" : {
-        "revision" : "0d5d6018a18fb65d17dc912848b035a343a4e716",
-        "version" : "26.5.6"
+        "revision" : "8d1af69cfafad1e4cffca9dd08f01ee336a201c6",
+        "version" : "26.5.21-2"
       }
     },
     {
@@ -185,8 +194,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/PostHog/posthog-ios",
       "state" : {
-        "revision" : "218fb6fe016a27baa3651613d53dae5c6e36af15",
-        "version" : "3.57.3"
+        "revision" : "cf6155963a6532c7b88e0cfa2b1d07595d6b6db6",
+        "version" : "3.58.3"
       }
     },
     {
@@ -194,8 +203,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "a49e7c2148ac9e38bd35ef4f13bc9d6ea3ff0b81",
-        "version" : "9.11.0"
+        "revision" : "64c9c5cc401aefde0eda46a9192b36082533a79d",
+        "version" : "9.13.0"
       }
     },
     {
@@ -239,8 +248,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections",
       "state" : {
-        "revision" : "6675bc0ff86e61436e615df6fc5174e043e57924",
-        "version" : "1.4.1"
+        "revision" : "fea17c02d767f46b23070fdfdacc28a03a39232a",
+        "version" : "1.5.1"
       }
     },
     {
@@ -275,8 +284,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/element-hq/swift-ogg",
       "state" : {
-        "revision" : "d60d4dd3eaaa3b07eafed76420ea03b79a516a13",
-        "version" : "0.0.3"
+        "revision" : "a00a22b90f6230d2d3a75a18adef97a3603d9d28",
+        "version" : "0.0.4"
       }
     },
     {
@@ -338,8 +347,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mxcl/Version",
       "state" : {
-        "revision" : "67ce582bb9de70e1eb2ee41fd71aad3b5f86d97b",
-        "version" : "2.2.0"
+        "revision" : "3043fcd2a50375db76d89ff206a612471833d1c2",
+        "version" : "2.2.1"
       }
     },
     {

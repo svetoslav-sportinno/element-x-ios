@@ -200,7 +200,6 @@
 "common_advanced_settings" = "Erweiterte Einstellungen";
 "common_an_image" = "ein Bild";
 "common_analytics" = "Analysedaten";
-"common_android_fetching_notifications_title" = "Benachrichtigungen werden synchronisiert...";
 "common_android_shortcuts_remove_reason_left_room" = "Du hast den Chat verlassen";
 "common_android_shortcuts_remove_reason_session_logged_out" = "Du wurdest aus der Sitzung abgemeldet.";
 "common_appearance" = "Erscheinungsbild";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "Hat den Chat verlassen";
 "common_current_user_left_space" = "Space verlassen";
 "common_current_user_rejected_invite" = "Einladung abgelehnt";
-"common_dark" = "Dunkel";
 "common_date_date_at_time" = "%1$@ um %2$@";
 "common_date_this_month" = "Diesen Monat";
 "common_decryption_error" = "Dekodierungsfehler";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "Diese Matrix Kennung wurde nicht gefunden, daher wird die Einladung möglicherweise nicht empfangen.";
 "common_leaving_room" = "Chat verlassen";
 "common_leaving_space" = "Space wird verlassen";
-"common_light" = "Hell";
 "common_line_copied_to_clipboard" = "Zeile in die Zwischenablage kopiert";
 "common_link_copied_to_clipboard" = "Link in die Zwischenablage kopiert";
 "common_link_new_device" = "Neues Gerät verknüpfen";
@@ -309,7 +306,6 @@
 "common_refreshing" = "Wird erneuert...";
 "common_removing" = "Entferne…";
 "common_replying_to" = "%1$@ antworten";
-"common_report_a_bug" = "Einen Fehler melden";
 "common_report_a_problem" = "Ein Problem melden";
 "common_report_submitted" = "Bericht eingereicht";
 "common_rich_text_editor" = "Rich-Text-Editor";
@@ -351,7 +347,6 @@
 "common_suggested" = "Empfohlen";
 "common_suggestions" = "Vorschläge";
 "common_syncing" = "Synchronisieren";
-"common_system" = "System";
 "common_text" = "Text";
 "common_third_party_notices" = "Hinweise von Drittanbietern";
 "common_thread" = "Thread";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "Nachrichten entfernen";
 "screen_room_change_permissions_everyone" = "Mitglied";
 "screen_room_change_permissions_invite_people" = "Mitglieder hinzufügen";
+"screen_room_change_permissions_live_location" = "Share live location";
 "screen_room_change_permissions_manage_space" = "Space konfigurieren";
 "screen_room_change_permissions_manage_space_rooms" = "Chats und Gruppen konfigurieren";
 "screen_room_change_permissions_member_moderation" = "Mitglieder verwalten";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "Schließ die App erst, wenn du fertig bist.";
 "screen_room_details_invite_people_preparing" = "Einladungen werden vorbereitet...";
 "screen_room_details_invite_people_title" = "Nutzer einladen";
+"screen_room_details_invite_title" = "Einladen";
 "screen_room_details_leave_conversation_title" = "Unterhaltung verlassen";
 "screen_room_details_leave_room_title" = "Verlassen";
 "screen_room_details_media_gallery_title" = "Medien und Dateien";
@@ -1408,6 +1405,7 @@
 "screen_session_verification_waiting_to_accept_title" = "Warten auf die Annahme der Anfrage";
 "screen_share_location_live_location_disclaimer_title" = "Your live location history will be stored in the room and visible to members after the session ends.";
 "screen_share_location_live_location_duration_picker_title" = "Wie lange soll der Live-Standort geteilt werden?";
+"screen_share_location_live_location_missing_permissions" = "You do not have permissions to share your live location in this room";
 "screen_share_location_title" = "Standort teilen";
 "screen_share_my_location_action" = "Meinen Standort teilen";
 "screen_share_open_apple_maps" = "In Apple Maps öffnen";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ hat eine unbekannte Änderung vorgenommen";
 "test_language_identifier" = "en";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "Black";
+"theme_dark" = "Dunkel";
+"theme_light" = "Hell";
+"theme_system" = "System";
 "timeline_decryption_failure_historical_event_no_key_backup" = "Der Nachrichtenverlauf ist auf diesem Gerät nicht verfügbar";
 "timeline_decryption_failure_historical_event_unverified_device" = "Für den Zugriff auf den Nachrichtenverlauf musst du dieses Gerät verifizieren";
 "timeline_decryption_failure_historical_event_user_not_joined" = "Du hast keinen Zugriff auf diese Nachricht.";

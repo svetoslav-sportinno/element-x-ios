@@ -200,7 +200,6 @@
 "common_advanced_settings" = "Configurações avançadas";
 "common_an_image" = "uma imagem";
 "common_analytics" = "Telemetria";
-"common_android_fetching_notifications_title" = "Syncing notifications...";
 "common_android_shortcuts_remove_reason_left_room" = "Você saiu da sala";
 "common_android_shortcuts_remove_reason_session_logged_out" = "Você foi desconectado da sessão";
 "common_appearance" = "Aparência";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "Saiu da sala";
 "common_current_user_left_space" = "Saiu do espaço";
 "common_current_user_rejected_invite" = "Convite recusado";
-"common_dark" = "Escuro";
 "common_date_date_at_time" = "%1$@ às %2$@";
 "common_date_this_month" = "Este mês";
 "common_decryption_error" = "Erro de descriptografia";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "Este ID Matrix não foi encontrado, então o convite pode não ser recebido";
 "common_leaving_room" = "Saindo da sala";
 "common_leaving_space" = "Saindo do espaço";
-"common_light" = "Claro";
 "common_line_copied_to_clipboard" = "Linha copiada para a área de transferência";
 "common_link_copied_to_clipboard" = "Link copiado para área de transferência";
 "common_link_new_device" = "Vincular novo dispositivo";
@@ -309,7 +306,6 @@
 "common_refreshing" = "Recarregando…";
 "common_removing" = "Removendo…";
 "common_replying_to" = "Respondendo a %1$@";
-"common_report_a_bug" = "Denunciar um bug";
 "common_report_a_problem" = "Relatar um problema";
 "common_report_submitted" = "Relatório enviado";
 "common_rich_text_editor" = "Editor de rich text";
@@ -351,7 +347,6 @@
 "common_suggested" = "Sugerido";
 "common_suggestions" = "Sugestões";
 "common_syncing" = "Sincronizando";
-"common_system" = "Sistema";
 "common_text" = "Texto";
 "common_third_party_notices" = "Comunicados de terceiros";
 "common_thread" = "Tópico";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "Remover mensagens";
 "screen_room_change_permissions_everyone" = "Membro";
 "screen_room_change_permissions_invite_people" = "Convidar pessoas";
+"screen_room_change_permissions_live_location" = "Share live location";
 "screen_room_change_permissions_manage_space" = "Gerenciar espaço";
 "screen_room_change_permissions_manage_space_rooms" = "Gerenciar salas";
 "screen_room_change_permissions_member_moderation" = "Gerenciar membros";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "Não feche o aplicativo até terminar.";
 "screen_room_details_invite_people_preparing" = "Preparando convites...";
 "screen_room_details_invite_people_title" = "Convidar pessoas";
+"screen_room_details_invite_title" = "Convidar";
 "screen_room_details_leave_conversation_title" = "Sair da conversa";
 "screen_room_details_leave_room_title" = "Sair da sala";
 "screen_room_details_media_gallery_title" = "Mídia e arquivos";
@@ -1408,6 +1405,7 @@
 "screen_session_verification_waiting_to_accept_title" = "Aguardando para aceitar a solicitação";
 "screen_share_location_live_location_disclaimer_title" = "Your live location history will be stored in the room and visible to members after the session ends.";
 "screen_share_location_live_location_duration_picker_title" = "Choose how long to share your live location.";
+"screen_share_location_live_location_missing_permissions" = "You do not have permissions to share your live location in this room";
 "screen_share_location_title" = "Compartilhar localização";
 "screen_share_my_location_action" = "Compartilhar minha localização";
 "screen_share_open_apple_maps" = "Abrir no Apple Maps";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ fez uma alteração desconhecida em sua associação";
 "test_language_identifier" = "pt-br";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "Black";
+"theme_dark" = "Escuro";
+"theme_light" = "Claro";
+"theme_system" = "Sistema";
 "timeline_decryption_failure_historical_event_no_key_backup" = "As mensagens históricas não estão disponíveis neste dispositivo";
 "timeline_decryption_failure_historical_event_unverified_device" = "Você precisa verificar este dispositivo para ter acesso à mensagens históricas";
 "timeline_decryption_failure_historical_event_user_not_joined" = "Você não tem acesso à esta mensagem";

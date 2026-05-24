@@ -60,6 +60,7 @@ struct AuthenticationClassicAppAccountView: View {
                                 contentID: classicAppAccount.userID,
                                 avatarSize: .user(on: .classicAppAccount),
                                 mediaProvider: context.mediaProvider)
+                .accessibilityHidden(true)
             
             VStack(spacing: 0) {
                 Text(L10n.screenOnboardingWelcomeBack)
@@ -150,8 +151,8 @@ struct AuthenticationClassicAppAccountView_Previews: PreviewProvider { // Not Te
                                            provisioningParameters: nil,
                                            isBugReportServiceEnabled: false,
                                            appMediator: AppMediatorMock(),
-                                           appSettings: ServiceLocator.shared.settings,
-                                           mediaProvider: MediaProviderMock(configuration: .init()),
+                                           appSettings: .volatile(),
+                                           mediaProvider: MediaProviderMock(.init()),
                                            userIndicatorController: UserIndicatorControllerMock())
     }
 }

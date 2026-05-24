@@ -131,9 +131,9 @@ struct UserProfileScreen_Previews: PreviewProvider, TestablePreview {
         clientProxyMock.userIdentityForFallBackToServerClosure = { userID, _ in
             let identity = switch userID {
             case RoomMemberProxyMock.mockDan.userID:
-                UserIdentityProxyMock(configuration: .init(verificationState: .verified))
+                UserIdentityProxyMock(.init(verificationState: .verified))
             default:
-                UserIdentityProxyMock(configuration: .init())
+                UserIdentityProxyMock(.init())
             }
             
             return .success(identity)
@@ -142,12 +142,12 @@ struct UserProfileScreen_Previews: PreviewProvider, TestablePreview {
         if userID != RoomMemberProxyMock.mockMe.userID {
             clientProxyMock.directRoomForUserIDReturnValue = .success("roomID")
         }
-        
+
         return UserProfileScreenViewModel(userID: userID,
                                           isPresentedModally: false,
                                           userSession: UserSessionMock(.init(clientProxy: clientProxyMock)),
-                                          userIndicatorController: ServiceLocator.shared.userIndicatorController,
-                                          analytics: ServiceLocator.shared.analytics,
-                                          appSettings: ServiceLocator.shared.settings)
+                                          userIndicatorController: UserIndicatorControllerMock(),
+                                          analytics: AnalyticsServiceMock(.init()),
+                                          appSettings: .volatile())
     }
 }

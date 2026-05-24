@@ -14,6 +14,7 @@ enum TimelineControllerCallback {
     case updatedTimelineItems(timelineItems: [RoomTimelineItemProtocol], isSwitchingTimelines: Bool)
     case paginationState(TimelinePaginationState)
     case isLive(Bool)
+    case sentMessage
 }
 
 enum TimelineControllerAction {
@@ -25,6 +26,7 @@ enum TimelineControllerAction {
     }
     
     case displayMediaPreview(item: EventBasedMessageTimelineItemProtocol, timelineViewModel: TimelineViewModelKind)
+    case displayGalleryPreview(galleryItem: GalleryRoomTimelineItem, initialIndex: Int)
     case displayLocation(StaticLocationData)
     case displayLiveLocation(sender: TimelineItemSender, initialLiveLocationShare: LiveLocationShare)
     case none
@@ -42,7 +44,7 @@ enum TimelineControllerError: Error {
 /// It, for example, permits switching from a live timeline to an event focused one, building view specific
 /// timeline items, grouping together state events, donating intents to the larger system etc.
 @MainActor
-protocol TimelineControllerProtocol {
+protocol TimelineControllerProtocol: Sendable {
     var roomID: String { get }
     var timelineKind: TimelineKind { get }
     
@@ -133,6 +135,11 @@ protocol TimelineControllerProtocol {
                           audioInfo: AudioInfo,
                           waveform: [Float],
                           requestHandle: @MainActor (SendAttachmentJoinHandleProtocol) -> Void) async -> Result<Void, TimelineControllerError>
+
+    func sendGallery(itemInfos: [GalleryItemInfo],
+                     caption: String?,
+                     formattedCaption: String?,
+                     inReplyToEventID: String?) async -> Result<Void, TimelineControllerError>
     
     // MARK: - Poll
     

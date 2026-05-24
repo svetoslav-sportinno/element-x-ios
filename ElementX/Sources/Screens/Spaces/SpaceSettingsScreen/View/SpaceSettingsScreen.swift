@@ -121,30 +121,24 @@ struct SpaceSettingsScreen: View {
 // MARK: - Previews
 
 struct SpaceSettingsScreen_Previews: PreviewProvider, TestablePreview {
-    static let ownerViewModel = RoomDetailsScreenViewModel(roomProxy: JoinedRoomProxyMock(.init(name: "Space",
-                                                                                                avatarURL: .mockMXCAvatar,
-                                                                                                isSpace: true,
-                                                                                                canonicalAlias: "#space:matrix.org",
-                                                                                                members: .allMembersAsCreator)),
-                                                           userSession: UserSessionMock(.init()),
-                                                           analyticsService: ServiceLocator.shared.analytics,
-                                                           userIndicatorController: ServiceLocator.shared.userIndicatorController,
-                                                           notificationSettingsProxy: NotificationSettingsProxyMock(with: NotificationSettingsProxyMockConfiguration()),
-                                                           attributedStringBuilder: AttributedStringBuilder(mentionBuilder: MentionBuilder()),
-                                                           appSettings: ServiceLocator.shared.settings)
+    static let ownerViewModel = makeViewModel(members: .allMembersAsCreator)
     
-    static let userViewModel = RoomDetailsScreenViewModel(roomProxy: JoinedRoomProxyMock(.init(name: "Space",
-                                                                                               avatarURL: .mockMXCAvatar,
-                                                                                               isSpace: true,
-                                                                                               canonicalAlias: "#space:matrix.org",
-                                                                                               members: .allMembers)),
-                                                          userSession: UserSessionMock(.init()),
-                                                          analyticsService: ServiceLocator.shared.analytics,
-                                                          userIndicatorController: ServiceLocator.shared.userIndicatorController,
-                                                          notificationSettingsProxy: NotificationSettingsProxyMock(with: NotificationSettingsProxyMockConfiguration()),
-                                                          attributedStringBuilder: AttributedStringBuilder(mentionBuilder: MentionBuilder()),
-                                                          appSettings: ServiceLocator.shared.settings)
+    static let userViewModel = makeViewModel(members: .allMembers)
     
+    static func makeViewModel(members: [RoomMemberProxyMock]) -> RoomDetailsScreenViewModel {
+        RoomDetailsScreenViewModel(roomProxy: JoinedRoomProxyMock(.init(name: "Space",
+                                                                        avatarURL: .mockMXCAvatar,
+                                                                        isSpace: true,
+                                                                        canonicalAlias: "#space:matrix.org",
+                                                                        members: members)),
+                                   userSession: UserSessionMock(.init()),
+                                   analyticsService: AnalyticsServiceMock(.init()),
+                                   userIndicatorController: UserIndicatorControllerMock(),
+                                   notificationSettingsProxy: NotificationSettingsProxyMock(with: NotificationSettingsProxyMockConfiguration()),
+                                   attributedStringBuilder: AttributedStringBuilder(mentionBuilder: MentionBuilder()),
+                                   appSettings: .volatile())
+    }
+
     static var previews: some View {
         ElementNavigationStack {
             SpaceSettingsScreen(context: ownerViewModel.context)

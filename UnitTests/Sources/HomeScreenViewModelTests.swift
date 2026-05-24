@@ -19,19 +19,13 @@ final class HomeScreenViewModelTests {
     
     var clientProxy: ClientProxyMock!
     var roomSummaryProvider: RoomSummaryProviderMock!
-    var appSettings: AppSettings!
     var notificationManager: NotificationManagerMock!
+    private let appSettings: AppSettings
     
     var cancellables = Set<AnyCancellable>()
     
     init() {
-        AppSettings.resetAllSettings()
-        appSettings = AppSettings()
-        ServiceLocator.shared.register(appSettings: appSettings)
-    }
-    
-    deinit {
-        AppSettings.resetAllSettings()
+        appSettings = AppSettings.volatile()
     }
     
     @Test
@@ -441,9 +435,9 @@ final class HomeScreenViewModelTests {
         viewModel = HomeScreenViewModel(userSession: userSession,
                                         selectedRoomPublisher: CurrentValueSubject<String?, Never>(nil).asCurrentValuePublisher(),
                                         appSettings: appSettings,
-                                        analyticsService: ServiceLocator.shared.analytics,
+                                        analyticsService: AnalyticsServiceMock(.init()),
                                         notificationManager: notificationManager,
-                                        userIndicatorController: ServiceLocator.shared.userIndicatorController)
+                                        userIndicatorController: UserIndicatorControllerMock())
     }
 }
 

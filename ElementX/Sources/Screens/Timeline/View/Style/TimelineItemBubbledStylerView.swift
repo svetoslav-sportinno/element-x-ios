@@ -18,8 +18,8 @@ struct TimelineItemBubbledStylerView<Content: View>: View {
     let adjustedDeliveryStatus: TimelineItemDeliveryStatus?
     @ViewBuilder let content: () -> Content
 
-    private var isDirectOneToOneRoom: Bool {
-        context.viewState.isDirectOneToOneRoom
+    private var isDM: Bool {
+        context.viewState.isDM
     }
 
     private var isFocussed: Bool {
@@ -40,14 +40,14 @@ struct TimelineItemBubbledStylerView<Content: View>: View {
     private let bubbleHorizontalPadding: CGFloat = 8
     /// Additional padding applied to outgoing bubbles when the avatar is shown
     private var bubbleAvatarPadding: CGFloat {
-        guard !timelineItem.isOutgoing, !isDirectOneToOneRoom else { return 0 }
+        guard !timelineItem.isOutgoing, !isDM else { return 0 }
         return 8
     }
     
     var body: some View {
         ZStack(alignment: .trailingFirstTextBaseline) {
             VStack(alignment: alignment, spacing: -12) {
-                if !timelineItem.isOutgoing, !isDirectOneToOneRoom {
+                if !timelineItem.isOutgoing, !isDM {
                     header
                         .zIndex(1)
                 }
@@ -164,7 +164,7 @@ struct TimelineItemBubbledStylerView<Content: View>: View {
                                                               canCurrentUserRedactOthers: context.viewState.canCurrentUserRedactOthers,
                                                               canCurrentUserPin: context.viewState.canCurrentUserPin,
                                                               pinnedEventIDs: context.viewState.pinnedEventIDs,
-                                                              isDM: context.viewState.isDirectOneToOneRoom,
+                                                              isDM: context.viewState.isDM,
                                                               isViewSourceEnabled: context.viewState.isViewSourceEnabled,
                                                               areThreadsEnabled: context.viewState.areThreadsEnabled,
                                                               timelineKind: context.viewState.timelineKind,
@@ -218,7 +218,7 @@ struct TimelineItemBubbledStylerView<Content: View>: View {
     }
     
     private var messageBubbleTopPadding: CGFloat {
-        guard timelineItem.isOutgoing || isDirectOneToOneRoom else { return 0 }
+        guard timelineItem.isOutgoing || isDM else { return 0 }
         return timelineGroupStyle == .single || timelineGroupStyle == .first ? 8 : 0
     }
     
@@ -334,7 +334,7 @@ private extension TimelineItemKeyForwarder {
 
 struct TimelineItemBubbledStylerView_Previews: PreviewProvider, TestablePreview {
     static let viewModel: TimelineViewModel = {
-        let appSettings = AppSettings()
+        let appSettings = AppSettings.volatile()
         appSettings.threadsEnabled = true
         
         let roomProxy = JoinedRoomProxyMock(.init())
@@ -343,17 +343,17 @@ struct TimelineItemBubbledStylerView_Previews: PreviewProvider, TestablePreview 
                                  timelineController: MockTimelineController(),
                                  userSession: UserSessionMock(.init()),
                                  mediaPlayerProvider: MediaPlayerProviderMock(),
-                                 userIndicatorController: ServiceLocator.shared.userIndicatorController,
-                                 appMediator: AppMediatorMock.default,
+                                 userIndicatorController: UserIndicatorControllerMock(),
+                                 appMediator: AppMediatorMock(.init()),
                                  appSettings: appSettings,
-                                 analyticsService: ServiceLocator.shared.analytics,
-                                 emojiProvider: EmojiProvider(appSettings: ServiceLocator.shared.settings),
+                                 analyticsService: AnalyticsServiceMock(.init()),
+                                 emojiProvider: EmojiProvider(appSettings: appSettings),
                                  linkMetadataProvider: LinkMetadataProvider(),
                                  timelineControllerFactory: TimelineControllerFactoryMock(.init()))
     }()
     
     static let viewModelWithPins: TimelineViewModel = {
-        let appSettings = AppSettings()
+        let appSettings = AppSettings.volatile()
         appSettings.threadsEnabled = true
         
         let roomProxy = JoinedRoomProxyMock(.init(name: "Preview Room", pinnedEventIDs: ["pinned"]))
@@ -362,11 +362,11 @@ struct TimelineItemBubbledStylerView_Previews: PreviewProvider, TestablePreview 
                                  timelineController: MockTimelineController(),
                                  userSession: UserSessionMock(.init()),
                                  mediaPlayerProvider: MediaPlayerProviderMock(),
-                                 userIndicatorController: ServiceLocator.shared.userIndicatorController,
-                                 appMediator: AppMediatorMock.default,
+                                 userIndicatorController: UserIndicatorControllerMock(),
+                                 appMediator: AppMediatorMock(.init()),
                                  appSettings: appSettings,
-                                 analyticsService: ServiceLocator.shared.analytics,
-                                 emojiProvider: EmojiProvider(appSettings: ServiceLocator.shared.settings),
+                                 analyticsService: AnalyticsServiceMock(.init()),
+                                 emojiProvider: EmojiProvider(appSettings: appSettings),
                                  linkMetadataProvider: LinkMetadataProvider(),
                                  timelineControllerFactory: TimelineControllerFactoryMock(.init()))
     }()

@@ -49,6 +49,10 @@ struct RoomInfoProxy: RoomInfoProxyProtocol {
     var isDirect: Bool {
         roomInfo.isDirect
     }
+    
+    var isDM: Bool {
+        roomInfo.isDm
+    }
 
     var isSpace: Bool {
         roomInfo.isSpace
@@ -139,6 +143,10 @@ struct RoomInfoProxy: RoomInfoProxyProtocol {
 
     var unreadMentionsCount: UInt {
         UInt(roomInfo.numUnreadMentions)
+    }
+
+    var fullyReadEventID: String? {
+        roomInfo.fullyReadEventId
     }
 
     var pinnedEventIDs: Set<String> {

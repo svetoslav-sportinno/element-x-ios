@@ -200,7 +200,6 @@
 "common_advanced_settings" = "Pengaturan tingkat lanjut";
 "common_an_image" = "sebuah gambar";
 "common_analytics" = "Analitik";
-"common_android_fetching_notifications_title" = "Syncing notifications...";
 "common_android_shortcuts_remove_reason_left_room" = "Anda keluar dari ruangan";
 "common_android_shortcuts_remove_reason_session_logged_out" = "Anda telah keluar dari sesi.";
 "common_appearance" = "Penampilan";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "Keluar dari ruangan";
 "common_current_user_left_space" = "Left space";
 "common_current_user_rejected_invite" = "Undangan ditolak";
-"common_dark" = "Gelap";
 "common_date_date_at_time" = "%1$@ pada %2$@";
 "common_date_this_month" = "Bulan ini";
 "common_decryption_error" = "Kesalahan dekripsi";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "ID Matrix ini tidak dapat ditemukan, sehingga undangan mungkin tidak diterima.";
 "common_leaving_room" = "Meninggalkan ruangan";
 "common_leaving_space" = "Leaving space";
-"common_light" = "Terang";
 "common_line_copied_to_clipboard" = "Baris disalin ke papan klip";
 "common_link_copied_to_clipboard" = "Tautan disalin ke papan klip";
 "common_link_new_device" = "Link new device";
@@ -309,7 +306,6 @@
 "common_refreshing" = "Menyegarkan…";
 "common_removing" = "Removing…";
 "common_replying_to" = "Membalas %1$@";
-"common_report_a_bug" = "Laporkan kutu";
 "common_report_a_problem" = "Laporkan masalah";
 "common_report_submitted" = "Laporan terkirim";
 "common_rich_text_editor" = "Penyunting teks kaya";
@@ -351,7 +347,6 @@
 "common_suggested" = "Suggested";
 "common_suggestions" = "Saran";
 "common_syncing" = "Menyinkronkan";
-"common_system" = "Sistem";
 "common_text" = "Teks";
 "common_third_party_notices" = "Pemberitahuan pihak ketiga";
 "common_thread" = "Utas";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "Hilangkan pesan";
 "screen_room_change_permissions_everyone" = "Semua Anggota";
 "screen_room_change_permissions_invite_people" = "Boleh mungundang";
+"screen_room_change_permissions_live_location" = "Share live location";
 "screen_room_change_permissions_manage_space" = "Manage space";
 "screen_room_change_permissions_manage_space_rooms" = "Manage rooms";
 "screen_room_change_permissions_member_moderation" = "Kelola anggota";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "Jangan tutup aplikasi tunggu hingga selesai.";
 "screen_room_details_invite_people_preparing" = "Mempersiapkan undangan...";
 "screen_room_details_invite_people_title" = "Undang orang-orang";
+"screen_room_details_invite_title" = "Undang";
 "screen_room_details_leave_conversation_title" = "Tinggalkan percakapan";
 "screen_room_details_leave_room_title" = "Tinggalkan ruangan";
 "screen_room_details_media_gallery_title" = "Media dan berkas";
@@ -1408,6 +1405,7 @@
 "screen_session_verification_waiting_to_accept_title" = "Menunggu untuk menerima permintaan";
 "screen_share_location_live_location_disclaimer_title" = "Your live location history will be stored in the room and visible to members after the session ends.";
 "screen_share_location_live_location_duration_picker_title" = "Choose how long to share your live location.";
+"screen_share_location_live_location_missing_permissions" = "You do not have permissions to share your live location in this room";
 "screen_share_location_title" = "Bagikan lokasi";
 "screen_share_my_location_action" = "Bagikan lokasi saya";
 "screen_share_open_apple_maps" = "Buka di Apple Maps";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ membuat perubahan keanggotaan yang tidak diketahui";
 "test_language_identifier" = "id";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "Black";
+"theme_dark" = "Gelap";
+"theme_light" = "Terang";
+"theme_system" = "Sistem";
 "timeline_decryption_failure_historical_event_no_key_backup" = "Riwayat pesan tidak tersedia di perangkat ini";
 "timeline_decryption_failure_historical_event_unverified_device" = "Anda harus memverifikasi perangkat ini untuk mengakses riwayat pesan";
 "timeline_decryption_failure_historical_event_user_not_joined" = "Anda tidak memiliki akses ke pesan ini";

@@ -183,7 +183,7 @@ protocol ClientProxyProtocol: AnyObject {
     
     func createDirectRoom(with userID: String, expectedRoomName: String?) async -> Result<String, ClientProxyError>
     
-    func createRoom(name: String,
+    func createRoom(name: String?,
                     topic: String?,
                     accessType: CreateRoomAccessType,
                     isSpace: Bool,
@@ -245,6 +245,8 @@ protocol ClientProxyProtocol: AnyObject {
     @discardableResult func clearCaches() async -> Result<Void, ClientProxyError>
     
     @discardableResult func optimizeStores() async -> Result<Void, ClientProxyError>
+
+    @discardableResult func markAllRoomsAsRead() async -> Result<Void, ClientProxyError>
     
     func storeSizes() async -> Result<StoreSizes, ClientProxyError>
     

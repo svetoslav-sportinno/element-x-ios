@@ -183,6 +183,10 @@ extension AccessibilityTests {
         try await performAccessibilityAudit(named: "FullscreenDialog_Previews")
     }
 
+    func testGalleryRoomTimelineView() async throws {
+        try await performAccessibilityAudit(named: "GalleryRoomTimelineView_Previews")
+    }
+
     func testGlobalSearchScreenListRow() async throws {
         try await performAccessibilityAudit(named: "GlobalSearchScreenListRow_Previews")
     }
@@ -793,6 +797,10 @@ extension AccessibilityTests {
 
     func testTimelineReplyView() async throws {
         try await performAccessibilityAudit(named: "TimelineReplyView_Previews")
+    }
+
+    func testTimelineScrollButton() async throws {
+        try await performAccessibilityAudit(named: "TimelineScrollButton_Previews")
     }
 
     func testTimelineStartRoomTimelineView() async throws {

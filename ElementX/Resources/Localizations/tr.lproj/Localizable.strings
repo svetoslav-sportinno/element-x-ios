@@ -200,7 +200,6 @@
 "common_advanced_settings" = "Gelişmiş Ayarlar";
 "common_an_image" = "an image";
 "common_analytics" = "Analizler";
-"common_android_fetching_notifications_title" = "Syncing notifications...";
 "common_android_shortcuts_remove_reason_left_room" = "Odadan ayrıldın.";
 "common_android_shortcuts_remove_reason_session_logged_out" = "You were logged out of the session";
 "common_appearance" = "Görünüm";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "Sol oda";
 "common_current_user_left_space" = "Left space";
 "common_current_user_rejected_invite" = "Davet reddedildi";
-"common_dark" = "Koyu";
 "common_date_date_at_time" = "%1$@ %2$@";
 "common_date_this_month" = "Bu ay";
 "common_decryption_error" = "Şifre çözme hatası";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "Bu Matrix Kimliği bulunamıyor, bu nedenle davet alınmayabilir.";
 "common_leaving_room" = "Odadan ayrılma";
 "common_leaving_space" = "Leaving space";
-"common_light" = "Aydınlık";
 "common_line_copied_to_clipboard" = "Metin panoya kopyalandı";
 "common_link_copied_to_clipboard" = "Bağlantı panoya kopyalandı";
 "common_link_new_device" = "Link new device";
@@ -309,7 +306,6 @@
 "common_refreshing" = "Yenileniyor...";
 "common_removing" = "Removing…";
 "common_replying_to" = "Cevaplamak için %1$@";
-"common_report_a_bug" = "Hata bildir";
 "common_report_a_problem" = "Sorun bildir";
 "common_report_submitted" = "Rapor gönderildi";
 "common_rich_text_editor" = "Zengin metin editörü";
@@ -351,7 +347,6 @@
 "common_suggested" = "Suggested";
 "common_suggestions" = "Öneriler";
 "common_syncing" = "Senkronizasyon";
-"common_system" = "Sistem";
 "common_text" = "Metin";
 "common_third_party_notices" = "Üçüncü taraf bildirimleri";
 "common_thread" = "Konu";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "Mesajları kaldır";
 "screen_room_change_permissions_everyone" = "Member";
 "screen_room_change_permissions_invite_people" = "Kişileri davet etme ve katılma isteklerini kabul etme";
+"screen_room_change_permissions_live_location" = "Share live location";
 "screen_room_change_permissions_manage_space" = "Alanı yönet";
 "screen_room_change_permissions_manage_space_rooms" = "Odaları yönet";
 "screen_room_change_permissions_member_moderation" = "Manage members";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "Don't close the app until finished.";
 "screen_room_details_invite_people_preparing" = "Preparing invitations...";
 "screen_room_details_invite_people_title" = "Kişileri davet et";
+"screen_room_details_invite_title" = "Davet et";
 "screen_room_details_leave_conversation_title" = "Sohbeti bırak";
 "screen_room_details_leave_room_title" = "Odadan ayrıl";
 "screen_room_details_media_gallery_title" = "Medya ve dosyalar";
@@ -1408,6 +1405,7 @@
 "screen_session_verification_waiting_to_accept_title" = "İsteğin kabul edilmesi bekleniyor";
 "screen_share_location_live_location_disclaimer_title" = "Your live location history will be stored in the room and visible to members after the session ends.";
 "screen_share_location_live_location_duration_picker_title" = "Choose how long to share your live location.";
+"screen_share_location_live_location_missing_permissions" = "You do not have permissions to share your live location in this room";
 "screen_share_location_title" = "Konum paylaş";
 "screen_share_my_location_action" = "Konumumu paylaş";
 "screen_share_open_apple_maps" = "Apple Maps'de aç";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ üyeliğinde bilinmeyen bir değişiklik yaptı";
 "test_language_identifier" = "tr";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "Black";
+"theme_dark" = "Koyu";
+"theme_light" = "Aydınlık";
+"theme_system" = "Sistem";
 "timeline_decryption_failure_historical_event_no_key_backup" = "Geçmiş mesajlar bu cihazda kullanılamıyor";
 "timeline_decryption_failure_historical_event_unverified_device" = "Geçmiş mesajlara erişim için bu cihazı doğrulamanız gerekir";
 "timeline_decryption_failure_historical_event_user_not_joined" = "Bu mesaja erişiminiz yok";

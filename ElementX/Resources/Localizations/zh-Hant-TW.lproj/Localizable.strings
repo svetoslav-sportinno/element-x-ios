@@ -200,7 +200,6 @@
 "common_advanced_settings" = "進階設定";
 "common_an_image" = "影像";
 "common_analytics" = "分析";
-"common_android_fetching_notifications_title" = "正在同步通知……";
 "common_android_shortcuts_remove_reason_left_room" = "您離開聊天室";
 "common_android_shortcuts_remove_reason_session_logged_out" = "您已登出工作階段";
 "common_appearance" = "外觀";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "已離開聊天室";
 "common_current_user_left_space" = "離開空間";
 "common_current_user_rejected_invite" = "邀請被拒絕";
-"common_dark" = "深色";
 "common_date_date_at_time" = "%1$@ 在 %2$@";
 "common_date_this_month" = "本月";
 "common_decryption_error" = "解密錯誤";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "找不到此 Matrix ID，因此可能沒有人會收到邀請。";
 "common_leaving_room" = "正在離開聊天室";
 "common_leaving_space" = "離開空間";
-"common_light" = "淺色";
 "common_line_copied_to_clipboard" = "行已複製到剪貼簿";
 "common_link_copied_to_clipboard" = "連結已複製到剪貼簿";
 "common_link_new_device" = "連結新裝置";
@@ -309,7 +306,6 @@
 "common_refreshing" = "重新整理中...";
 "common_removing" = "正在移除……";
 "common_replying_to" = "正在回覆%1$@";
-"common_report_a_bug" = "回報程式錯誤";
 "common_report_a_problem" = "回報問題";
 "common_report_submitted" = "已遞交報告";
 "common_rich_text_editor" = "格式化文字編輯器";
@@ -351,7 +347,6 @@
 "common_suggested" = "已建議";
 "common_suggestions" = "建議";
 "common_syncing" = "同步中";
-"common_system" = "系統";
 "common_text" = "文字";
 "common_third_party_notices" = "第三方通知";
 "common_thread" = "討論串";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "移除訊息";
 "screen_room_change_permissions_everyone" = "成員";
 "screen_room_change_permissions_invite_people" = "邀請夥伴";
+"screen_room_change_permissions_live_location" = "Share live location";
 "screen_room_change_permissions_manage_space" = "管理空間";
 "screen_room_change_permissions_manage_space_rooms" = "管理聊天室";
 "screen_room_change_permissions_member_moderation" = "管理成員";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "完成前請勿關閉應用程式。";
 "screen_room_details_invite_people_preparing" = "正在準備邀請……";
 "screen_room_details_invite_people_title" = "邀請夥伴";
+"screen_room_details_invite_title" = "邀請";
 "screen_room_details_leave_conversation_title" = "離開對話";
 "screen_room_details_leave_room_title" = "離開聊天室";
 "screen_room_details_media_gallery_title" = "媒體與檔案";
@@ -1408,6 +1405,7 @@
 "screen_session_verification_waiting_to_accept_title" = "等待接受請求";
 "screen_share_location_live_location_disclaimer_title" = "您的即時位置歷史將儲存於聊天室中，並在工作階段結束後對其他成員可見。";
 "screen_share_location_live_location_duration_picker_title" = "選擇分享即時位置的時間長度。";
+"screen_share_location_live_location_missing_permissions" = "You do not have permissions to share your live location in this room";
 "screen_share_location_title" = "分享位置";
 "screen_share_my_location_action" = "分享我的位置";
 "screen_share_open_apple_maps" = "在 Apple Maps 中開啟";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ 對其會員資格做出了未知的變更";
 "test_language_identifier" = "zh-tw";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "Black";
+"theme_dark" = "深色";
+"theme_light" = "淺色";
+"theme_system" = "系統";
 "timeline_decryption_failure_historical_event_no_key_backup" = "歷史訊息在此裝置上無法讀取";
 "timeline_decryption_failure_historical_event_unverified_device" = "您必須驗證此裝置才能存取歷史訊息";
 "timeline_decryption_failure_historical_event_user_not_joined" = "您無法存取此則訊息";

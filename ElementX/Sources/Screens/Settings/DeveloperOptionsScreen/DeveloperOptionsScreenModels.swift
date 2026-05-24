@@ -48,6 +48,7 @@ struct DeveloperOptionsScreenViewStateBindings {
 
 enum DeveloperOptionsScreenViewAction {
     case clearCache
+    case markAllRoomsAsRead
 }
 
 protocol DeveloperOptionsProtocol: AnyObject {
@@ -67,6 +68,8 @@ protocol DeveloperOptionsProtocol: AnyObject {
     var knockingEnabled: Bool { get set }
     
     var linkPreviewsEnabled: Bool { get set }
+
+    var jumpToReadMarkerEnabled: Bool { get set }
     
     var linkNewDeviceEnabled: Bool { get set }
             

@@ -31,6 +31,8 @@ struct ChatsTabFlowCoordinatorTests {
     }
     
     init() async throws {
+        let appSettings = AppSettings.volatile()
+        
         clientProxy = ClientProxyMock(.init(userID: "hi@bob", roomSummaryProvider: RoomSummaryProviderMock(.init(state: .loaded(.mockRooms)))))
         timelineControllerFactory = TimelineControllerFactoryMock(.init())
         
@@ -42,12 +44,12 @@ struct ChatsTabFlowCoordinatorTests {
                                                   bugReportService: BugReportServiceMock(.init()),
                                                   elementCallService: ElementCallServiceMock(.init()),
                                                   timelineControllerFactory: timelineControllerFactory,
-                                                  emojiProvider: EmojiProvider(appSettings: ServiceLocator.shared.settings),
+                                                  emojiProvider: EmojiProvider(appSettings: appSettings),
                                                   linkMetadataProvider: LinkMetadataProvider(),
-                                                  appMediator: AppMediatorMock.default,
-                                                  appSettings: ServiceLocator.shared.settings,
+                                                  appMediator: AppMediatorMock(.init()),
+                                                  appSettings: appSettings,
                                                   appHooks: AppHooks(),
-                                                  analytics: ServiceLocator.shared.analytics,
+                                                  analytics: AnalyticsServiceMock(.init()),
                                                   userIndicatorController: UserIndicatorControllerMock(),
                                                   notificationManager: notificationManager,
                                                   stateMachineFactory: stateMachineFactory)

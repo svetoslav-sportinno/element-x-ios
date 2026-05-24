@@ -200,7 +200,6 @@
 "common_advanced_settings" = "Advanced settings";
 "common_an_image" = "an image";
 "common_analytics" = "Analitika";
-"common_android_fetching_notifications_title" = "Syncing notifications...";
 "common_android_shortcuts_remove_reason_left_room" = "Jūs išėjote iš kambario";
 "common_android_shortcuts_remove_reason_session_logged_out" = "You were logged out of the session";
 "common_appearance" = "Appearance";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "Išėjo iš kambario";
 "common_current_user_left_space" = "Left space";
 "common_current_user_rejected_invite" = "Invite declined";
-"common_dark" = "Dark";
 "common_date_date_at_time" = "%1$@ at %2$@";
 "common_date_this_month" = "This month";
 "common_decryption_error" = "Iššifravimo klaida";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "Šio Matrix ID nepavyksta rasti, todėl kvietimas gali būti negautas.";
 "common_leaving_room" = "Paliekamas kambarys";
 "common_leaving_space" = "Leaving space";
-"common_light" = "Light";
 "common_line_copied_to_clipboard" = "Line copied to clipboard";
 "common_link_copied_to_clipboard" = "Nuoroda nukopijuota į iškarpinę";
 "common_link_new_device" = "Link new device";
@@ -309,7 +306,6 @@
 "common_refreshing" = "Atnaujinama…";
 "common_removing" = "Removing…";
 "common_replying_to" = "Atsakant %1$@";
-"common_report_a_bug" = "Pranešti apie klaidą";
 "common_report_a_problem" = "Report a problem";
 "common_report_submitted" = "Skundas pateiktas";
 "common_rich_text_editor" = "Rich text editor";
@@ -351,7 +347,6 @@
 "common_suggested" = "Suggested";
 "common_suggestions" = "Pasiūlymai";
 "common_syncing" = "Sinchronizuojama";
-"common_system" = "System";
 "common_text" = "Text";
 "common_third_party_notices" = "Trečiųjų šalių pranešimai";
 "common_thread" = "Thread";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "Remove messages";
 "screen_room_change_permissions_everyone" = "Member";
 "screen_room_change_permissions_invite_people" = "Invite people";
+"screen_room_change_permissions_live_location" = "Share live location";
 "screen_room_change_permissions_manage_space" = "Manage space";
 "screen_room_change_permissions_manage_space_rooms" = "Manage rooms";
 "screen_room_change_permissions_member_moderation" = "Manage members";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "Don't close the app until finished.";
 "screen_room_details_invite_people_preparing" = "Preparing invitations...";
 "screen_room_details_invite_people_title" = "Pakviesti žmonių";
+"screen_room_details_invite_title" = "Kviesti";
 "screen_room_details_leave_conversation_title" = "Palikti pokalbį";
 "screen_room_details_leave_room_title" = "Išeiti iš kambario";
 "screen_room_details_media_gallery_title" = "Media and files";
@@ -1408,6 +1405,7 @@
 "screen_session_verification_waiting_to_accept_title" = "Laukiama prašymo priėmimo";
 "screen_share_location_live_location_disclaimer_title" = "Your live location history will be stored in the room and visible to members after the session ends.";
 "screen_share_location_live_location_duration_picker_title" = "Choose how long to share your live location.";
+"screen_share_location_live_location_missing_permissions" = "You do not have permissions to share your live location in this room";
 "screen_share_location_title" = "Bendrinti vietą";
 "screen_share_my_location_action" = "Bendrinti mano vietą";
 "screen_share_open_apple_maps" = "Atverti programoje „Apple Maps“";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ padarė nežinomą savo narystės pakeitimą";
 "test_language_identifier" = "lt";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "Black";
+"theme_dark" = "Dark";
+"theme_light" = "Light";
+"theme_system" = "System";
 "timeline_decryption_failure_historical_event_no_key_backup" = "Historical messages are not available on this device";
 "timeline_decryption_failure_historical_event_unverified_device" = "You need to verify this device for access to historical messages";
 "timeline_decryption_failure_historical_event_user_not_joined" = "You don't have access to this message";

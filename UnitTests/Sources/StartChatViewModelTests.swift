@@ -20,15 +20,17 @@ struct StartChatScreenViewModelTests {
     }
     
     init() {
+        let appSettings = AppSettings.volatile()
+        
         clientProxy = .init(.init(userID: ""))
         userDiscoveryService = UserDiscoveryServiceMock()
         userDiscoveryService.searchProfilesWithReturnValue = .success([])
         let userSession = UserSessionMock(.init(clientProxy: clientProxy))
         viewModel = StartChatScreenViewModel(userSession: userSession,
-                                             analytics: ServiceLocator.shared.analytics,
+                                             analytics: AnalyticsServiceMock(.init()),
                                              userIndicatorController: UserIndicatorControllerMock(),
                                              userDiscoveryService: userDiscoveryService,
-                                             appSettings: ServiceLocator.shared.settings)
+                                             appSettings: appSettings)
     }
     
     @Test
@@ -90,7 +92,7 @@ struct StartChatScreenViewModelTests {
     @Test
     func inviteConfirmationFetchesIdentity() async throws {
         clientProxy.directRoomForUserIDReturnValue = .success(nil)
-        clientProxy.userIdentityForFallBackToServerReturnValue = .success(UserIdentityProxyMock(configuration: .init(verificationState: .notVerified)))
+        clientProxy.userIdentityForFallBackToServerReturnValue = .success(UserIdentityProxyMock(.init(verificationState: .notVerified)))
         
         // User identity becomes known, i.e. not unknown
         let deferred = deferFulfillment(viewModel.context.$viewState.compactMap(\.bindings.selectedUserToInvite)) {

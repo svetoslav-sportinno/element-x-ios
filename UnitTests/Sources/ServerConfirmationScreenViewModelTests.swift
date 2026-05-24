@@ -16,22 +16,16 @@ final class ServerConfirmationScreenViewModelTests {
     var clientFactory: AuthenticationClientFactoryMock!
     var client: ClientSDKMock!
     var service: AuthenticationServiceProtocol!
-    var appSettings: AppSettings!
-    
+
     var viewModel: ServerConfirmationScreenViewModel!
     var context: ServerConfirmationScreenViewModel.Context {
         viewModel.context
     }
-    
+
+    private let appSettings: AppSettings
+
     init() {
-        AppSettings.resetAllSettings()
-        appSettings = AppSettings()
-        // These app settings are kept local to the tests on purpose as if they are registered in the
-        // ServiceLocator, the providers override that we apply will break other tests in the suite.
-    }
-    
-    deinit {
-        AppSettings.resetAllSettings()
+        appSettings = AppSettings.volatile()
     }
     
     // MARK: - Confirmation mode
@@ -350,14 +344,14 @@ final class ServerConfirmationScreenViewModelTests {
         }
         
         // Manually create a configuration as the default homeserver address setting is immutable.
-        client = ClientSDKMock(configuration: .init(oAuthLoginURL: supportsOAuth ? "https://account.matrix.org/authorize" : nil,
-                                                    supportsOAuthCreatePrompt: supportsOAuthCreatePrompt,
-                                                    supportsPasswordLogin: supportsPasswordLogin,
-                                                    elementWellKnown: requiresElementPro ? "{\"version\":1,\"enforce_element_pro\":true}" : nil))
+        client = ClientSDKMock(.init(oAuthLoginURL: supportsOAuth ? "https://account.matrix.org/authorize" : nil,
+                                     supportsOAuthCreatePrompt: supportsOAuthCreatePrompt,
+                                     supportsPasswordLogin: supportsPasswordLogin,
+                                     elementWellKnown: requiresElementPro ? "{\"version\":1,\"enforce_element_pro\":true}" : nil))
         let configuration = AuthenticationClientFactoryMock.Configuration(homeserverClients: ["matrix.org": client])
         
-        clientFactory = AuthenticationClientFactoryMock(configuration: configuration)
-        service = AuthenticationService(userSessionStore: UserSessionStoreMock(configuration: .init()),
+        clientFactory = AuthenticationClientFactoryMock(configuration)
+        service = AuthenticationService(userSessionStore: UserSessionStoreMock(.init()),
                                         encryptionKeyProvider: EncryptionKeyProvider(),
                                         classicAppManager: nil,
                                         clientFactory: clientFactory,
@@ -367,7 +361,7 @@ final class ServerConfirmationScreenViewModelTests {
         viewModel = ServerConfirmationScreenViewModel(authenticationService: service,
                                                       mode: mode,
                                                       authenticationFlow: authenticationFlow,
-                                                      appSettings: ServiceLocator.shared.settings,
+                                                      appSettings: appSettings,
                                                       userIndicatorController: UserIndicatorControllerMock())
         
         // Add a fake window in order for the OAuth flow to continue

@@ -36,6 +36,7 @@ protocol RoomInfoProxyProtocol: BaseRoomInfoProxyProtocol {
 
     var isEncrypted: Bool { get }
     var isDirect: Bool { get }
+    var isDM: Bool { get }
     var isSpace: Bool { get }
     var isFavourite: Bool { get }
     
@@ -57,6 +58,7 @@ protocol RoomInfoProxyProtocol: BaseRoomInfoProxyProtocol {
     var unreadMessagesCount: UInt { get }
     var unreadNotificationsCount: UInt { get }
     var unreadMentionsCount: UInt { get }
+    var fullyReadEventID: String? { get }
     var pinnedEventIDs: Set<String> { get }
     var joinRule: JoinRule? { get }
     var historyVisibility: RoomHistoryVisibility { get }

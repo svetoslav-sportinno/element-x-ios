@@ -7,7 +7,7 @@
 "a11y_edit_room_address_hint" = "完整地址为 %1$@";
 "a11y_expand_message_text_field" = "展开消息文本框";
 "a11y_hide_password" = "隐藏密码";
-"a11y_info" = "Info";
+"a11y_info" = "信息";
 "a11y_join_call" = "加入通话";
 "a11y_jump_to_bottom" = "跳转到底部";
 "a11y_notifications_mentions_only" = "仅提及";
@@ -63,7 +63,7 @@
 "action_call" = "通话";
 "action_cancel" = "取消";
 "action_cancel_for_now" = "暂时取消";
-"action_choose_file" = "Choose file";
+"action_choose_file" = "选择文件";
 "action_choose_photo" = "选择照片";
 "action_clear" = "清除";
 "action_close" = "关闭";
@@ -122,7 +122,7 @@
 "action_manage_account_and_devices" = "管理账户与设备";
 "action_manage_devices" = "管理设备";
 "action_manage_rooms" = "管理房间";
-"action_message" = "发送消息给";
+"action_message" = "发送消息";
 "action_minimize" = "最小化";
 "action_next" = "下一步";
 "action_no" = "否";
@@ -200,7 +200,6 @@
 "common_advanced_settings" = "高级设置";
 "common_an_image" = "一张图片";
 "common_analytics" = "分析";
-"common_android_fetching_notifications_title" = "正在同步通知…";
 "common_android_shortcuts_remove_reason_left_room" = "你离开了房间";
 "common_android_shortcuts_remove_reason_session_logged_out" = "你已注销会话";
 "common_appearance" = "外观";
@@ -220,7 +219,6 @@
 "common_current_user_left_room" = "离开房间";
 "common_current_user_left_space" = "离开空间";
 "common_current_user_rejected_invite" = "邀请已拒绝";
-"common_dark" = "深色";
 "common_date_date_at_time" = "于 %1$@ %2$@";
 "common_date_this_month" = "本月";
 "common_decryption_error" = "解密错误";
@@ -257,7 +255,6 @@
 "common_invite_unknown_profile" = "找不到此 Matrix ID，因此可能无法收到邀请。";
 "common_leaving_room" = "正在离开房间";
 "common_leaving_space" = "正在离开空间";
-"common_light" = "浅色";
 "common_line_copied_to_clipboard" = "链接已复制到剪贴板";
 "common_link_copied_to_clipboard" = "链接已复制到剪贴板";
 "common_link_new_device" = "关联新设备";
@@ -309,7 +306,6 @@
 "common_refreshing" = "正在刷新…";
 "common_removing" = "正在移除…";
 "common_replying_to" = "正在回复 %1$@";
-"common_report_a_bug" = "报告 bug";
 "common_report_a_problem" = "报告问题";
 "common_report_submitted" = "报告已提交";
 "common_rich_text_editor" = "富文本编辑器";
@@ -351,7 +347,6 @@
 "common_suggested" = "建议";
 "common_suggestions" = "建议";
 "common_syncing" = "正在同步";
-"common_system" = "系统";
 "common_text" = "文本";
 "common_third_party_notices" = "第三方通知";
 "common_thread" = "消息列";
@@ -997,7 +992,7 @@
 "screen_notification_settings_mode_all" = "全部";
 "screen_notification_settings_mode_mentions" = "提及";
 "screen_notification_settings_notification_section_title" = "通知我以下类型";
-"screen_notification_settings_room_mention_label" = "我在房间中被提及时通知我";
+"screen_notification_settings_room_mention_label" = "提及所有成员（@room）时通知我";
 "screen_notification_settings_system_notifications_action_required" = "要接收通知，请更改 %1$@。";
 "screen_notification_settings_system_notifications_action_required_content_link" = "系统设置";
 "screen_notification_settings_system_notifications_turned_off" = "系统通知已关闭";
@@ -1097,7 +1092,7 @@
 "screen_report_content_hint" = "举报此内容的理由";
 "screen_report_room_leave_failed_alert_message" = "你的举报已成功提交，但在尝试退出房间时遇到问题。请重试。";
 "screen_report_room_leave_failed_alert_title" = "无法离开房间";
-"screen_report_room_reason_footer" = "向管理员举报此房间。如果信息已加密，管理员将无法读取。";
+"screen_report_room_reason_footer" = "向管理员举报此房间。如果消息已加密，管理员将无法读取。";
 "screen_report_room_reason_placeholder" = "描述举报的理由…";
 "screen_report_room_title" = "举报房间";
 "screen_reset_encryption_confirmation_alert_action" = "是，立即重置";
@@ -1132,6 +1127,7 @@
 "screen_room_change_permissions_delete_messages" = "移除消息";
 "screen_room_change_permissions_everyone" = "成员";
 "screen_room_change_permissions_invite_people" = "邀请人员";
+"screen_room_change_permissions_live_location" = "共享实时位置";
 "screen_room_change_permissions_manage_space" = "管理空间";
 "screen_room_change_permissions_manage_space_rooms" = "管理房间";
 "screen_room_change_permissions_member_moderation" = "管理成员";
@@ -1178,6 +1174,7 @@
 "screen_room_details_invite_people_dont_close" = "完成之前请勿关闭 app。";
 "screen_room_details_invite_people_preparing" = "正在准备邀请…";
 "screen_room_details_invite_people_title" = "邀请人员";
+"screen_room_details_invite_title" = "邀请";
 "screen_room_details_leave_conversation_title" = "离开聊天";
 "screen_room_details_leave_room_title" = "离开房间";
 "screen_room_details_media_gallery_title" = "媒体与文件";
@@ -1406,8 +1403,9 @@
 "screen_session_verification_waiting_subtitle" = "一旦被接受，你将能够继续进行验证。";
 "screen_session_verification_waiting_to_accept_subtitle" = "接受此请求以在另一会话中开始验证流程以继续操作。";
 "screen_session_verification_waiting_to_accept_title" = "等待接受请求";
-"screen_share_location_live_location_disclaimer_title" = "你实时位置历史将存储在房间中，并于会话结束后对其他成员可见。";
+"screen_share_location_live_location_disclaimer_title" = "你的实时位置历史将存储在房间中，并于会话结束后对其他成员可见。";
 "screen_share_location_live_location_duration_picker_title" = "选择共享实时位置的时长。";
+"screen_share_location_live_location_missing_permissions" = "你无权在此房内共享实时位置。";
 "screen_share_location_title" = "共享位置";
 "screen_share_my_location_action" = "共享我的位置";
 "screen_share_open_apple_maps" = "在 Apple Maps 中打开";
@@ -1539,6 +1537,10 @@
 "state_event_room_unknown_membership_change" = "%1$@ 对其成员资格进行了未知更改";
 "test_language_identifier" = "zh-Hans";
 "test_untranslated_default_language_identifier" = "en";
+"theme_black" = "纯黑";
+"theme_dark" = "深色";
+"theme_light" = "浅色";
+"theme_system" = "系统";
 "timeline_decryption_failure_historical_event_no_key_backup" = "历史消息在此设备上不可用";
 "timeline_decryption_failure_historical_event_unverified_device" = "你需要验证此设备才能访问历史消息";
 "timeline_decryption_failure_historical_event_user_not_joined" = "无权访问此消息";

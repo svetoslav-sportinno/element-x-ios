@@ -16,7 +16,7 @@ enum TimelineInteractionHandlerAction {
     case displayReportContent(itemID: TimelineItemIdentifier, senderID: String)
     case displayMessageForwarding(itemID: TimelineItemIdentifier)
     case displayMediaUploadPreviewScreen(mediaURLs: [URL])
-    case displayPollForm(mode: PollFormMode)
+    case displayEditPollForm(eventID: String, poll: Poll)
     
     case showActionMenu(TimelineItemActionMenuInfo)
     case showDebugInfo(TimelineItemDebugInfo)
@@ -41,7 +41,7 @@ class TimelineInteractionHandler {
     private let userIndicatorController: UserIndicatorControllerProtocol
     private let appMediator: AppMediatorProtocol
     private let appSettings: AppSettings
-    private let analyticsService: AnalyticsService
+    private let analyticsService: AnalyticsServiceProtocol
     private let emojiProvider: EmojiProviderProtocol
     private let linkMetadataProvider: LinkMetadataProviderProtocol
     private let timelineControllerFactory: TimelineControllerFactoryProtocol
@@ -68,7 +68,7 @@ class TimelineInteractionHandler {
          userIndicatorController: UserIndicatorControllerProtocol,
          appMediator: AppMediatorProtocol,
          appSettings: AppSettings,
-         analyticsService: AnalyticsService,
+         analyticsService: AnalyticsServiceProtocol,
          emojiProvider: EmojiProviderProtocol,
          linkMetadataProvider: LinkMetadataProviderProtocol,
          timelineControllerFactory: TimelineControllerFactoryProtocol) {
@@ -130,7 +130,7 @@ class TimelineInteractionHandler {
                     MXLog.error("Cannot edit poll with id: \(timelineItem.id)")
                     return
                 }
-                actionsSubject.send(.displayPollForm(mode: .edit(eventID: eventID, poll: pollTimelineItem.poll)))
+                actionsSubject.send(.displayEditPollForm(eventID: eventID, poll: pollTimelineItem.poll))
             default:
                 MXLog.error("Cannot edit item with id: \(timelineItem.id)")
             }
@@ -237,6 +237,10 @@ class TimelineInteractionHandler {
             htmlText = content.formattedCaptionHTMLString
             editType = text.isEmpty ? .addCaption : .editCaption
         case .video(let content):
+            text = content.caption ?? ""
+            htmlText = content.formattedCaptionHTMLString
+            editType = text.isEmpty ? .addCaption : .editCaption
+        case .gallery(let content):
             text = content.caption ?? ""
             htmlText = content.formattedCaptionHTMLString
             editType = text.isEmpty ? .addCaption : .editCaption
@@ -548,16 +552,26 @@ class TimelineInteractionHandler {
                                                              timeoutDate: item.content.timeoutDate)
             return .displayLiveLocation(sender: item.sender, initialLiveLocationShare: initialLiveLocationShare)
         case let item as ImageRoomTimelineItem:
-            return await mediaPreviewAction(for: item, messageTypes: [.image, .video])
+            return await mediaPreviewAction(for: item, messageTypes: [.image, .video, .gallery])
         case let item as VideoRoomTimelineItem:
-            return await mediaPreviewAction(for: item, messageTypes: [.image, .video])
+            return await mediaPreviewAction(for: item, messageTypes: [.image, .video, .gallery])
         case let item as AudioRoomTimelineItem:
-            return await mediaPreviewAction(for: item, messageTypes: [.audio, .file])
+            return await mediaPreviewAction(for: item, messageTypes: [.audio, .file, .gallery])
         case let item as FileRoomTimelineItem:
-            return await mediaPreviewAction(for: item, messageTypes: [.audio, .file])
+            return await mediaPreviewAction(for: item, messageTypes: [.audio, .file, .gallery])
         default:
             return .none
         }
+    }
+
+    /// Opens a media preview scoped to a single gallery's attachments. The preview pages
+    /// only between the items of that one gallery — siblings in the wider timeline aren't
+    /// reachable from this entry point (use the regular media tap for that).
+    func processGalleryItemTap(itemID: TimelineItemIdentifier, index: Int) -> TimelineControllerAction {
+        guard let galleryItem = timelineController.timelineItems.firstUsingStableID(itemID) as? GalleryRoomTimelineItem else {
+            return .none
+        }
+        return .displayGalleryPreview(galleryItem: galleryItem, initialIndex: index)
     }
     
     // MARK: - Private

@@ -127,7 +127,7 @@ struct TimelineItemStyler_Previews: PreviewProvider, TestablePreview {
                                                                isEditable: false,
                                                                canBeRepliedTo: true,
                                                                sender: .test,
-                                                               content: .init(body: "house! -- באמת‏! -- house!"))
+                                                               content: .init(body: "house! -- באמת! -- house!"))
 
     static let rtlStringThatContainsLtr = TextRoomTimelineItem(id: .randomEvent,
                                                                timestamp: .mock,
@@ -135,7 +135,7 @@ struct TimelineItemStyler_Previews: PreviewProvider, TestablePreview {
                                                                isEditable: false,
                                                                canBeRepliedTo: true,
                                                                sender: .test,
-                                                               content: .init(body: "באמת‏! -- house! -- באמת!"))
+                                                               content: .init(body: "באמת! -- house! -- באמת!"))
 
     static let ltrStringThatFinishesInRtl = TextRoomTimelineItem(id: .randomEvent,
                                                                  timestamp: .mock,
@@ -151,7 +151,40 @@ struct TimelineItemStyler_Previews: PreviewProvider, TestablePreview {
                                                                  isEditable: false,
                                                                  canBeRepliedTo: true,
                                                                  sender: .test,
-                                                                 content: .init(body: "באמת‏! -- house!"))
+                                                                 content: .init(body: "באמת! -- house!"))
+    
+    static let bigEmoji = TextRoomTimelineItem(id: .randomEvent,
+                                               timestamp: .mock,
+                                               isOutgoing: true,
+                                               isEditable: false,
+                                               canBeRepliedTo: true,
+                                               shouldBoost: true,
+                                               sender: .test,
+                                               content: .init(body: "😮"))
+
+    static let endingWithBlockquote: TextRoomTimelineItem = {
+        let builder = AttributedStringBuilder(cacheKey: "preview", mentionBuilder: MentionBuilder())
+        let attributedString = builder.fromHTML("<p>Some text before</p><blockquote>A quoted line at the end</blockquote>")
+        return TextRoomTimelineItem(id: .randomEvent,
+                                    timestamp: .mock,
+                                    isOutgoing: true,
+                                    isEditable: false,
+                                    canBeRepliedTo: true,
+                                    sender: .test,
+                                    content: .init(body: "", formattedBody: attributedString))
+    }()
+
+    static let endingWithCodeblock: TextRoomTimelineItem = {
+        let builder = AttributedStringBuilder(cacheKey: "preview", mentionBuilder: MentionBuilder())
+        let attributedString = builder.fromHTML("<p>Some text before</p><pre><code>let x = 42</code></pre>")
+        return TextRoomTimelineItem(id: .randomEvent,
+                                    timestamp: .mock,
+                                    isOutgoing: true,
+                                    isEditable: false,
+                                    canBeRepliedTo: true,
+                                    sender: .test,
+                                    content: .init(body: "", formattedBody: attributedString))
+    }()
 
     static var testView: some View {
         VStack(spacing: 0) {
@@ -161,6 +194,8 @@ struct TimelineItemStyler_Previews: PreviewProvider, TestablePreview {
             TextRoomTimelineView(timelineItem: sendingNonLast)
             TextRoomTimelineView(timelineItem: sendingLast)
             TextRoomTimelineView(timelineItem: failed)
+            TextRoomTimelineView(timelineItem: endingWithBlockquote)
+            TextRoomTimelineView(timelineItem: endingWithCodeblock)
         }
     }
 
@@ -172,6 +207,7 @@ struct TimelineItemStyler_Previews: PreviewProvider, TestablePreview {
             TextRoomTimelineView(timelineItem: rtlStringThatContainsLtr)
             TextRoomTimelineView(timelineItem: ltrStringThatFinishesInRtl)
             TextRoomTimelineView(timelineItem: rtlStringThatFinishesInLtr)
+            TextRoomTimelineView(timelineItem: bigEmoji)
         }
     }
 
